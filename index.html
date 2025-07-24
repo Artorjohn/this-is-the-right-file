@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hiiiiiii</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="NIKI - lowkey (Lyrics).mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- PAGE 1: Ask for Name -->
+  <div id="page1" class="container active">
+    <img src="bubududu-panda.gif" alt="bubududu">
+    <h1>Who are you po?</h1>
+    <form id="nameForm">
+      <input type="text" id="name" name="name" placeholder="Enter your name po please" required>
+      <br><br>
+      <button type="submit">Pa submit po</button>
+    </form>
+  </div>
+
+  <!-- PAGE 2: Greeting -->
+  <div id="page2" class="container">
+    <img src="snoopy.gif" alt="snoopy">
+    <h2>YEHEYY! IT'S YOU, <span id="userName">!</span></h2>
+    <p>I have something to tell you , can you proceed po ba?</p>
+    <p>Thank you for trusting me and downloading this file. I appreciate it</p>
+    <button onclick="alertBeforeLetter()">Hihi, sige na po, wala naman ibang button</button>
+  </div>
+
+  <!-- PAGE 3: Long Letter with Typing Effect -->
+  <div id="page3" class="container">
+    <h2>Hi, Natasha,</h2>
+    <p id="letter"></p>
+    <br>
+    <button onclick="showPage('page1')">Back to Start</button>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    const letterText = `I know it was you, because I made this file only for you. Idk where or how to even start. I'm afraid of the risk I'm taking right now, because once you're reading this, I'm doomed.
+
+Hindi ko na 'to patatagalin pa but, I like you, Natasha. I knoww, it's weirdd, right? But yeah, it's true. It's only been weeks or a week since we've known each other, but I guess I've gotten attached to you that much already.
+
+Hear me out. I like you not because of your physical appearance, but because of how we connect. Kung gaano ka kakulit, karandom, kadaldal, like super dami. And this song Lowkey? Whenever I hear this song, I remember you; it reminds me of you. 
+
+Heyy, uhmm, I'm not going to pressure you haa, gusto ko lang sabihin 'to sa'yo because gusto koo. I'm not really the type of person who talks much about his feelings, but this is something special that I can't help but tell you. 
+
+Ito na nga at mas kinakabahan na ako. 
+
+Hindi na ako aasa pa na magkakagusto ka rin sa akin kasi like you're too pretty and too intelligent to like someone like me na, ewan koo, sapat na yung mabait siguro. 
+
+I know my past relationship didn't end well, and ever since then, I'm afraid to fall into a relationship with somebody else but I'm taking the risk.
+
+That's all I can say for now, Natasha. It doesn't matter if you don't like me back or something, but I hope na after nito e hindi maputol communication natin🥹. Thank you for taking your time to read all of these, Natasha, I really appreciate it.`;
+
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.container');
+      pages.forEach(page => page.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+
+      if (pageId === "page3") {
+        typeLetter(letterText, "letter", 0);
+      }
+    }
+
+    function typeLetter(text, elementId, index) {
+      if (index < text.length) {
+        document.getElementById(elementId).innerHTML += text.charAt(index);
+        setTimeout(() => typeLetter(text, elementId, index + 1), 25);
+      }
+    }
+
+    // Form submission
+    document.getElementById("nameForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      document.getElementById("userName").innerText = name;
+      showPage("page2");
+
+      // Play background music on first interaction
+      const music = document.getElementById("bgMusic");
+      music.play().catch(err => {
+        console.log("Browser blocked autoplay until interaction.");
+      });
+    });
+
+    // Alert before showing the letter
+    function alertBeforeLetter() {
+      const music = document.getElementById("bgMusic");
+      music.play().catch(() => {}); // just in case
+
+      alert("I'm not really sure about this HAHAHAHA");
+      alert("I hope na sana you're patient enough to keep clicking these buttons HAHHAHA");
+      alert("Please proceed and keep reading this");
+      alert("i'm sorry nga pala sobrang simple lang nitong gawa ko ah");
+      alert("I'm still learning pa kasi and I can't think of anything para mas mapa ganda to e");
+      alert("This is the last alert, promise HAHAHA please proceed");
+      alert("I'm not really assuming that much but yeah");
+      alert("fuck it");
+      showPage("page3");
+    }
+  </script>
+</body>
+</html>
